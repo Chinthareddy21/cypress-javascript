@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "cypress": "^13.6.4"
+  },
+  "scripts": {
+    "pretest": " rm -R -f allure-results/* && echo \"starting tests\"",
+    "posttest": "allure serve && echo \"tests completed\"",
+    "test": "npx cypress run --browser chrome --headed --env allure=true"
+  },
+  "devDependencies": {
+    "@mmisty/cypress-allure-adapter": "^0.16.4",
+    "cypress-mochawesome-reporter": "^3.8.1"
+  }
+}

@@ -1,0 +1,25 @@
+const { defineConfig } = require("cypress");
+const { configureAllureAdapterPlugins } = require('@mmisty/cypress-allure-adapter/plugins');
+
+
+module.exports = defineConfig({
+  reporter: 'cypress-mochawesome-reporter',
+  reporterOptions: {
+    charts: true,
+    reportPageTitle: 'custom-title',
+    embeddedScreenshots: true,
+    inlineAssets: true,
+    saveAllAttempts: true,
+    JSON: false,
+    html: true
+  },
+  e2e: {
+    setupNodeEvents(on, config) {
+      require('cypress-mochawesome-reporter/plugin')(on);
+      configureAllureAdapterPlugins(on, config);
+
+      return config;
+    },
+  },
+  defaultCommandTimeout: 30000,
+});
